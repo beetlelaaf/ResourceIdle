@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using ResourceIdlePersonal.Model;
 
 namespace ResourceIdlePersonal.ViewModel
 {
-    public class MainWindowViewModel
+    public partial class MainWindowViewModel : INotifyPropertyChanged
     { 
         public Dictionary<string, Resource> Resources { get; set; }
         public Dictionary<string, Machine> Machines { get; set; }
@@ -16,6 +20,16 @@ namespace ResourceIdlePersonal.ViewModel
         {
             InitializeResources();
             InitializeMachines();
+            InitializeCommands();
+        }
+
+        public ICommand IncrementWoodByOneCommand { get; private set; }
+        public ICommand IncrementStoneByOneCommand { get; private set; }
+
+        public void InitializeCommands()
+        {
+            IncrementWoodByOneCommand = new RelayCommand(() => IncrementResource(Resources["Wood"], 1));
+            IncrementStoneByOneCommand = new RelayCommand(() => IncrementResource(Resources["Stone"], 1));
         }
 
         public void InitializeResources()
@@ -35,26 +49,16 @@ namespace ResourceIdlePersonal.ViewModel
                     "WoodCutter", new Machine 
                     { 
                         Name = "WoodCutter", 
-                        Quantity = 0, 
                         ProductionRate = 2,
-                        Cost = new Dictionary<string, int>
-                        {
-                            { "Wood", 20 },
-                            { "Stone", 10 }
-                        }
+                        Cost = {{ "Wood", 20 }, { "Stone", 10 }}
                     }
                 },
                 {
                     "StoneMine", new Machine
                     {
                         Name = "StoneMine",
-                        Quantity = 0,
                         ProductionRate = 1,
-                        Cost = new Dictionary<string, int>
-                        {
-                            { "Wood", 40 },
-                            { "Stone", 40 }
-                        }
+                        Cost = {{ "Wood", 40 }, { "Stone", 40 }}
                     }
                 },
             };
@@ -64,5 +68,13 @@ namespace ResourceIdlePersonal.ViewModel
         public Machine StoneMineMachine => Machines["StoneMine"];
         public Resource WoodResource => Resources["Wood"];
         public Resource StoneResource => Resources["Stone"];
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

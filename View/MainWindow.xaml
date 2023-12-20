@@ -15,20 +15,72 @@
             <RowDefinition Height="14*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" ShowGridLines="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Margin="10">
-                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                    <Label Margin="5,0" Padding="5, 2" Content="Icon"></Label>
-                    <Label Margin="5,0" Padding="5, 2" Content="{Binding WoodResource.Name}"></Label>
-                    <Label Margin="5,0" Padding="5, 2" Content="{Binding WoodResource.Quantity}"></Label>
-                    <Label Margin="5,0" Padding="5, 2" Content="n/sec"></Label>
-                    <Button Margin="5,0" Padding="5, 2" Content="Gain 1"></Button>
-                </StackPanel>
-            </StackPanel>
+            <Grid Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Icon"></Label>
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding WoodResource.Name}"></Label>
+                <Label Grid.Row="0" Grid.Column="2" Content="{Binding WoodResource.Quantity}"></Label>
+                <Label Grid.Row="0" Grid.Column="3" Content="n/sec"></Label>
+                <Button Grid.Row="0" Grid.Column="4" Content="Gain 1" Command="{Binding IncrementWoodByOneCommand}"></Button>
+                <Label Grid.Row="1" Grid.Column="0" Content="Icon"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding StoneResource.Name}"></Label>
+                <Label Grid.Row="1" Grid.Column="2" Content="{Binding StoneResource.Quantity}"></Label>
+                <Label Grid.Row="1" Grid.Column="3" Content="n/sec"></Label>
+                <Button Grid.Row="1" Grid.Column="4" Content="Gain 1" Command="{Binding IncrementStoneByOneCommand}"></Button>
+            </Grid>
+            <Grid Grid.Column="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Icon"></Label>
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding WoodCutterMachine.Name}"></Label>
+                <Label Grid.Row="0" Grid.Column="2" Content="{Binding WoodCutterMachine.Quantity}"></Label>
+                <Button Grid.Row="0" Grid.Column="4" Content="Purchase"></Button>
+                <Label Grid.Row="1" Grid.Column="0" Content="Icon"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding StoneMineMachine.Name}"></Label>
+                <Label Grid.Row="1" Grid.Column="2" Content="{Binding StoneMineMachine.Quantity}"></Label>
+                <Button Grid.Row="1" Grid.Column="4" Content="Purchase"></Button>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
