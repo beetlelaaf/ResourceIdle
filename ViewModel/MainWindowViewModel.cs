@@ -26,10 +26,15 @@ namespace ResourceIdlePersonal.ViewModel
         public ICommand IncrementWoodByOneCommand { get; private set; }
         public ICommand IncrementStoneByOneCommand { get; private set; }
 
+        public ICommand IncrementWoodCutterByOneCommand { get; private set; }
+        public ICommand IncrementStoneMineByOneCommand { get; private set; }
+
         public void InitializeCommands()
         {
             IncrementWoodByOneCommand = new RelayCommand(() => IncrementResource(Resources["Wood"], 1));
             IncrementStoneByOneCommand = new RelayCommand(() => IncrementResource(Resources["Stone"], 1));
+            IncrementWoodCutterByOneCommand = new RelayCommand(() => IncrementMachine(Machines["WoodCutter"], 1));
+            IncrementStoneMineByOneCommand = new RelayCommand(() => IncrementMachine(Machines["StoneMine"], 1));
         }
 
         public void InitializeResources()
@@ -48,7 +53,8 @@ namespace ResourceIdlePersonal.ViewModel
                 { 
                     "WoodCutter", new Machine 
                     { 
-                        Name = "WoodCutter", 
+                        Name = "WoodCutter",
+                        Quantity = 0,
                         ProductionRate = 2,
                         Cost = {{ "Wood", 20 }, { "Stone", 10 }}
                     }
@@ -57,6 +63,7 @@ namespace ResourceIdlePersonal.ViewModel
                     "StoneMine", new Machine
                     {
                         Name = "StoneMine",
+                        Quantity = 0,
                         ProductionRate = 1,
                         Cost = {{ "Wood", 40 }, { "Stone", 40 }}
                     }
