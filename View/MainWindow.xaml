@@ -75,11 +75,11 @@
                 <Label Grid.Row="0" Grid.Column="0" Content="Icon"></Label>
                 <Label Grid.Row="0" Grid.Column="1" Content="{Binding WoodCutterMachine.Name}"></Label>
                 <Label Grid.Row="0" Grid.Column="2" Content="{Binding WoodCutterMachine.Quantity}"></Label>
-                <Button Grid.Row="0" Grid.Column="4" Content="Purchase" Command="{Binding IncrementWoodCutterByOneCommand}"></Button>
+                <Button Grid.Row="0" Grid.Column="4" IsEnabled="{Binding WoodCutterMachine.IsAffordable}" Content="Purchase" Command="{Binding IncrementWoodCutterByOneCommand}"></Button>
                 <Label Grid.Row="1" Grid.Column="0" Content="Icon"></Label>
                 <Label Grid.Row="1" Grid.Column="1" Content="{Binding StoneMineMachine.Name}"></Label>
                 <Label Grid.Row="1" Grid.Column="2" Content="{Binding StoneMineMachine.Quantity}"></Label>
-                <Button Grid.Row="1" Grid.Column="4" Content="Purchase" Command="{Binding IncrementStoneMineByOneCommand}"></Button>
+                <Button Grid.Row="1" Grid.Column="4" IsEnabled="{Binding StoneMineMachine.IsAffordable}" Content="Purchase" Command="{Binding IncrementStoneMineByOneCommand}"></Button>
             </Grid>
         </Grid>
     </Grid>

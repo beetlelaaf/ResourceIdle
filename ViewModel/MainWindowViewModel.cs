@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using ResourceIdlePersonal.Model;
 
@@ -16,11 +17,15 @@ namespace ResourceIdlePersonal.ViewModel
         public Dictionary<string, Resource> Resources { get; set; }
         public Dictionary<string, Machine> Machines { get; set; }
 
+        private DispatcherTimer timer;
+        private int seconds;
+
         public MainWindowViewModel()
         {
             InitializeResources();
             InitializeMachines();
             InitializeCommands();
+            InitializeTimer();
         }
 
         public ICommand IncrementWoodByOneCommand { get; private set; }
@@ -75,6 +80,22 @@ namespace ResourceIdlePersonal.ViewModel
         public Machine StoneMineMachine => Machines["StoneMine"];
         public Resource WoodResource => Resources["Wood"];
         public Resource StoneResource => Resources["Stone"];
+
+        public void InitializeTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += TimerTick;
+            seconds = 0;
+            timer.Start();
+        }
+
+        public void TimerTick(object sender, EventArgs e)
+        {
+            seconds++;
+            GenerateResources(Machines, Resources);
+            CheckPrices(Machines, Resources);
+        }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;

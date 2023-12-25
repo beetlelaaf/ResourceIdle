@@ -23,6 +23,20 @@ namespace ResourceIdlePersonal.Model
                 }
             }
         }
+
+        private bool _isAffordable;
+        public bool IsAffordable
+        {
+            get { return _isAffordable; }
+            set
+            {
+                if (_isAffordable != value)
+                {
+                    _isAffordable = value;
+                    OnPropertyChanged(nameof(IsAffordable));
+                }
+            }
+        }
         public int ProductionRate { get; set; }
         public Dictionary<string, int> Cost { get; set; } = new Dictionary<string, int>();
 
