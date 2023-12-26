@@ -9,9 +9,9 @@ namespace ResourceIdlePersonal.ViewModel
 {
     public partial class MainWindowViewModel
     {
-        public static void IncrementResource(Resource resource, int amountToAdd)
+        public static void IncrementElement(Element element, int amountToAdd)
         {
-            resource.AddAmount(amountToAdd);
+            element.AddAmount(amountToAdd);
         }
     }
 }

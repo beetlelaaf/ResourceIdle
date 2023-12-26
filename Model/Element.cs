@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ResourceIdlePersonal.Model
 {
-    public class Resource : INotifyPropertyChanged
+    public class Element : INotifyPropertyChanged
     {
         public string Name { get; set; } = "";
         private int _quantity;

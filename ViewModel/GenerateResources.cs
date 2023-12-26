@@ -9,10 +9,10 @@ namespace ResourceIdlePersonal.ViewModel
 {
     public partial class MainWindowViewModel
     {
-        public static void GenerateResources(Dictionary<string, Machine> machines, Dictionary<string, Resource> resources)
+        public static void GenerateResources(Dictionary<string, Compound> compounds, Dictionary<string, Element> elements)
         {
-            resources["Wood"].AddAmount(machines["WoodCutter"].ProductionRate * machines["WoodCutter"].Quantity);
-            resources["Stone"].AddAmount(machines["StoneMine"].ProductionRate * machines["StoneMine"].Quantity);
+            elements["H"].AddAmount(compounds["LiH"].ProductionRate * compounds["LiH"].Quantity);
+            elements["Li"].AddAmount(compounds["BeH2"].ProductionRate * compounds["BeH2"].Quantity);
         }
     }
 }

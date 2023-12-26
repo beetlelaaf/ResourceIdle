@@ -42,15 +42,15 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Content="Icon"></Label>
-                <Label Grid.Row="0" Grid.Column="1" Content="{Binding WoodResource.Name}"></Label>
-                <Label Grid.Row="0" Grid.Column="2" Content="{Binding WoodResource.Quantity}"></Label>
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding HElement.Name}"></Label>
+                <Label Grid.Row="0" Grid.Column="2" Content="{Binding HElement.Quantity}"></Label>
                 <Label Grid.Row="0" Grid.Column="3" Content="n/sec"></Label>
-                <Button Grid.Row="0" Grid.Column="4" Content="Gain 1" Command="{Binding IncrementWoodByOneCommand}"></Button>
+                <Button Grid.Row="0" Grid.Column="4" Content="Gain 1" Command="{Binding IncrementH}"></Button>
                 <Label Grid.Row="1" Grid.Column="0" Content="Icon"></Label>
-                <Label Grid.Row="1" Grid.Column="1" Content="{Binding StoneResource.Name}"></Label>
-                <Label Grid.Row="1" Grid.Column="2" Content="{Binding StoneResource.Quantity}"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding LiElement.Name}"></Label>
+                <Label Grid.Row="1" Grid.Column="2" Content="{Binding LiElement.Quantity}"></Label>
                 <Label Grid.Row="1" Grid.Column="3" Content="n/sec"></Label>
-                <Button Grid.Row="1" Grid.Column="4" Content="Gain 1" Command="{Binding IncrementStoneByOneCommand}"></Button>
+                <Button Grid.Row="1" Grid.Column="4" Content="Gain 1" Command="{Binding IncrementLi}"></Button>
             </Grid>
             <Grid Grid.Column="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
@@ -73,13 +73,13 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="Icon"></Label>
-                <Label Grid.Row="0" Grid.Column="1" Content="{Binding WoodCutterMachine.Name}"></Label>
-                <Label Grid.Row="0" Grid.Column="2" Content="{Binding WoodCutterMachine.Quantity}"></Label>
-                <Button Grid.Row="0" Grid.Column="4" IsEnabled="{Binding WoodCutterMachine.IsAffordable}" Content="Purchase" Command="{Binding IncrementWoodCutterByOneCommand}"></Button>
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding LiHCompound.Name}"></Label>
+                <Label Grid.Row="0" Grid.Column="2" Content="{Binding LiHCompound.Quantity}"></Label>
+                <Button Grid.Row="0" Grid.Column="4" IsEnabled="{Binding LiHCompound.IsAffordable}" Content="Purchase" Command="{Binding IncrementLiH}"></Button>
                 <Label Grid.Row="1" Grid.Column="0" Content="Icon"></Label>
-                <Label Grid.Row="1" Grid.Column="1" Content="{Binding StoneMineMachine.Name}"></Label>
-                <Label Grid.Row="1" Grid.Column="2" Content="{Binding StoneMineMachine.Quantity}"></Label>
-                <Button Grid.Row="1" Grid.Column="4" IsEnabled="{Binding StoneMineMachine.IsAffordable}" Content="Purchase" Command="{Binding IncrementStoneMineByOneCommand}"></Button>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding BeH2Compound.Name}"></Label>
+                <Label Grid.Row="1" Grid.Column="2" Content="{Binding BeH2Compound.Quantity}"></Label>
+                <Button Grid.Row="1" Grid.Column="4" IsEnabled="{Binding BeH2Compound.IsAffordable}" Content="Purchase" Command="{Binding IncrementBeH2}"></Button>
             </Grid>
         </Grid>
     </Grid>

@@ -10,26 +10,26 @@ namespace ResourceIdlePersonal.ViewModel
 {
     public partial class MainWindowViewModel
     {
-        public static void CheckPrices(Dictionary<string, Machine> machines, Dictionary<string, Resource> resources)
+        public static void CheckPrices(Dictionary<string, Compound> compounds, Dictionary<string, Element> elements)
         {
-            foreach (var machineEntry in machines)
+            foreach (var compoundEntry in compounds)
             {
-                string machineName = machineEntry.Key;
-                Machine machine  = machineEntry.Value;
+                string compoundName = compoundEntry.Key;
+                Compound compound  = compoundEntry.Value;
                 bool isAffordable = true;
 
-                foreach (var costEntry in machine.Cost)
+                foreach (var costEntry in compound.Cost)
                 {
-                    string resourceName = costEntry.Key;
+                    string elementName = costEntry.Key;
                     int cost = costEntry.Value;
 
-                    if (cost > resources[resourceName].Quantity)
+                    if (cost > elements[elementName].Quantity)
                     {
                         isAffordable = false;
                         break;
                     }
                 }
-                machines[machineName].IsAffordable = isAffordable;
+                compounds[compoundName].IsAffordable = isAffordable;
             }
         } 
     }

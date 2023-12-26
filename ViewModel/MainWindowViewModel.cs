@@ -14,8 +14,8 @@ namespace ResourceIdlePersonal.ViewModel
 {
     public partial class MainWindowViewModel : INotifyPropertyChanged
     { 
-        public Dictionary<string, Resource> Resources { get; set; }
-        public Dictionary<string, Machine> Machines { get; set; }
+        public Dictionary<string, Element> Elements { get; set; }
+        public Dictionary<string, Compound> Compounds { get; set; }
 
         private DispatcherTimer timer;
         private int seconds;
@@ -28,58 +28,64 @@ namespace ResourceIdlePersonal.ViewModel
             InitializeTimer();
         }
 
-        public ICommand IncrementWoodByOneCommand { get; private set; }
-        public ICommand IncrementStoneByOneCommand { get; private set; }
+        public ICommand IncrementH { get; private set; }
+        public ICommand IncrementLi { get; private set; }
+        public ICommand IncrementBe { get; private set; }
 
-        public ICommand IncrementWoodCutterByOneCommand { get; private set; }
-        public ICommand IncrementStoneMineByOneCommand { get; private set; }
+        public ICommand IncrementLiH { get; private set; }
+        public ICommand IncrementBeH2 { get; private set; }
 
         public void InitializeCommands()
         {
-            IncrementWoodByOneCommand = new RelayCommand(() => IncrementResource(Resources["Wood"], 1));
-            IncrementStoneByOneCommand = new RelayCommand(() => IncrementResource(Resources["Stone"], 1));
-            IncrementWoodCutterByOneCommand = new RelayCommand(() => IncrementMachine(Machines["WoodCutter"], 1));
-            IncrementStoneMineByOneCommand = new RelayCommand(() => IncrementMachine(Machines["StoneMine"], 1));
+            IncrementH = new RelayCommand(() => IncrementElement(Elements["H"], 1));
+            IncrementLi = new RelayCommand(() => IncrementElement(Elements["Li"], 1));
+            IncrementBe = new RelayCommand(() => IncrementElement(Elements["Be"], 1));
+
+            IncrementLiH = new RelayCommand(() => IncrementCompound(Compounds["LiH"], 1));
+            IncrementBeH2 = new RelayCommand(() => IncrementCompound(Compounds["BeH2"], 1));
         }
 
         public void InitializeResources()
         {
-            Resources = new Dictionary<string, Resource>
+            Elements = new Dictionary<string, Element>
             {
-                { "Wood", new Resource { Name = "Wood", Quantity = 0 } },
-                { "Stone", new Resource { Name = "Stone", Quantity = 0 } }
+                { "H", new Element { Name = "H", Quantity = 0 } },
+                { "Li", new Element { Name = "Li", Quantity = 0 } },
+                { "Be", new Element { Name = "Be", Quantity = 0 } }
             };
         }
 
         public void InitializeMachines()
         {
-            Machines = new Dictionary<string, Machine>
+            Compounds = new Dictionary<string, Compound>
             {
-                { 
-                    "WoodCutter", new Machine 
+                {
+                    "LiH", new Compound 
                     { 
-                        Name = "WoodCutter",
+                        Name = "LiH",
                         Quantity = 0,
                         ProductionRate = 2,
-                        Cost = {{ "Wood", 20 }, { "Stone", 10 }}
+                        Cost = {{ "Li", 1 }, { "H", 1 }}
                     }
                 },
                 {
-                    "StoneMine", new Machine
+                    "BeH2", new Compound
                     {
-                        Name = "StoneMine",
+                        Name = "BeH2",
                         Quantity = 0,
                         ProductionRate = 1,
-                        Cost = {{ "Wood", 40 }, { "Stone", 40 }}
+                        Cost = {{ "Be", 1 }, { "H", 2 }}
                     }
                 },
             };
         }
 
-        public Machine WoodCutterMachine => Machines["WoodCutter"];
-        public Machine StoneMineMachine => Machines["StoneMine"];
-        public Resource WoodResource => Resources["Wood"];
-        public Resource StoneResource => Resources["Stone"];
+        public Compound LiHCompound => Compounds["LiH"];
+        public Compound BeH2Compound => Compounds["BeH2"];
+        public Element HElement => Elements["H"];
+        public Element LiElement => Elements["Li"];
+        public Element BeElement => Elements["Be"];
+
 
         public void InitializeTimer()
         {
@@ -93,8 +99,8 @@ namespace ResourceIdlePersonal.ViewModel
         public void TimerTick(object sender, EventArgs e)
         {
             seconds++;
-            GenerateResources(Machines, Resources);
-            CheckPrices(Machines, Resources);
+            GenerateResources(Compounds, Elements);
+            CheckPrices(Compounds, Elements);
         }
 
 
